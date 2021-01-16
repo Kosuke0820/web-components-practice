@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>host-context</title>
+</head>
+<body>
+  <div class="red">
+    <my-element></my-element>
+  </div>
+  <div class="blue">
+    <my-element></my-element>
+  </div>
+  <script>
+    class MyElement extends HTMLElement {
+      constructor() {
+        super()
+        this.attachShadow({ mode: 'open' })
+      }
+
+      connectedCallback() {
+        this.shadowRoot.innerHTML = `
+          <style>
+            :host-context(.red) {
+              color: #e53935;
+            }
+          </style>
+          <h1>my-element</h1>
+        `
+      }
+    }
+
+    customElements.define('my-element', MyElement)
+  </script>
+</body>
+</html>

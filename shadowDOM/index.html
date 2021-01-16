@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShadowDOM</title>
+</head>
+<body>
+  <my-element name="kskymst">my slot contents</my-element>
+  <script>
+    class MyElement extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' })
+      }
+
+      connectedCallback() {
+        const name = this.getAttribute('name')
+        this.shadowRoot.innerHTML = `<h1>Hello, ${name}, slot: <slot></slot></h1>`
+      }
+    }
+
+    customElements.define('my-element', MyElement)
+  </script>
+</body>
+</html>

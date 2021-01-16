@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>capsuleCSS</title>
+  <style>
+    h1 {
+      color: #d53935;
+    }
+  </style>
+</head>
+<body>
+  <my-element-1></my-element-1>
+  <my-element-2></my-element-2>
+  <my-element-3></my-element-3>
+
+  <parent-element></parent-element>
+  <script>
+    class MyElement1 extends HTMLElement {
+      connectedCallback() {
+        const name = this.getAttribute('name')
+        this.innerHTML = '<h1>my-element-1</h1>'
+      }
+    }
+
+    class MyElement2 extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' })
+      }
+
+      connectedCallback() {
+        this.shadowRoot.innerHTML = '<h1>my-element-2</h1>'
+      }
+    }
+
+    class MyElement3 extends HTMLElement {
+      constructor() {
+        super()
+        this.attachShadow({ mode: 'open' })
+      }
+
+      connectedCallback() {
+        this.shadowRoot.innerHTML = `
+          <style>
+            h1 {
+              color: #1e88e5
+            }
+            </style>
+            <h1>my-element-3</h1>
+          `
+      }
+    }
+
+    class ChildElement extends HTMLElement {
+      constructor() {
+        super()
+        this.attachShadow({ mode: 'open' })
+      }
+
+      connectedCallback() {
+        this.shadowRoot.innerHTML = '<h1>child-element</h1>'
+      }
+    }
+
+    class ParentElement extends HTMLElement {
+      constructor() {
+        super()
+        this.attachShadow({ mode: 'open' })
+      }
+
+      connectedCallback() {
+        this.shadowRoot.innerHTML = `
+          <style>
+            h1 {
+              color: #e53935;
+            }
+          </style>
+          <h1>parent-element</h1>
+          <child-element></child-element>
+        `
+      }
+    }
+
+    customElements.define('my-element-1', MyElement1)
+    customElements.define('my-element-2', MyElement2)
+    customElements.define('my-element-3', MyElement3)
+    customElements.define('child-element', ChildElement)
+    customElements.define('parent-element', ParentElement)
+  </script>
+</body>
+</html>
