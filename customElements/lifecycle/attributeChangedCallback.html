@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>attributeChangedCallback</title>
+</head>
+<body>
+  <div>
+    <input id="input" type="text" value="">
+  </div>
+  <my-element id="my-element" observed="" unobserved=""></my-element>
+  <script>
+    class MyElement extends HTMLElement {
+      connectedCallback() {
+        this.innerHTML = '<div></div>'
+      }
+
+      static get observedAttributes() {
+        return ['observed'];
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        console.log(`attribute: ${name}: ${oldValue} -> ${newValue}`)
+      }
+    }
+
+    customElements.define('my-element', MyElement)
+
+    const input = document.getElementById('input');
+    input.addEventListener('keyup', event => {
+      const myElement = document.getElementById('my-element')
+      myElement.setAttribute('observed', event.currentTarget.value)
+      myElement.setAttribute('unobserved', event.currentTarget.value)
+    })
+  </script>
+</body>
+</html>
