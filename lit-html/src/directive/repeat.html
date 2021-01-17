@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    import { html, render } from 'lit-html'
+    import { repeat } from 'lit-html/directives/repeat';
+
+    const list = [
+      { id: 1, name: 'John', age: 24 },
+      { id: 2, name: 'Alice', age: 21 },
+      { id: 3, name: 'Arthur', age: 34 },
+      { id: 4, name: 'Molly', age: 20 },
+      { id: 5, name: 'Mike', age: 20 },
+    ]
+
+    const template = html`
+      <style>
+        li > div {
+          display: inline-block;
+          width: 120px;
+        }
+      </style>
+      <article>
+        <h1>Users</h1>
+        <ul>
+          ${repeat(
+            list,
+            ({id}) => id,
+            data => html`
+              <li>
+                <div>${data.name}</div>
+                <div>age: ${data.age}</div>
+              </li>
+            `
+          )}
+        </ul>
+      </article>
+    `
+
+    render(
+      template,
+      document.body
+    )
+
+  </script>
+</body>
+</html>

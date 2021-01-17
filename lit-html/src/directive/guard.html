@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    import { html, render } from 'lit-html'
+    import { guard } from 'lit-html/directives/guard';
+
+    const templateFn = prop => html`
+      <div>
+        ${guard(prop, () => html`<div>${prop}</div>`)}
+      </div>
+    `
+
+    const template = html`
+      <div>
+        ${templateFn('hoge')}
+        ${templateFn(true)}
+        ${templateFn(false)}
+        ${templateFn(null)}
+      </div>
+    `
+
+    render(
+      template,
+      document.body
+    )
+  </script>
+</body>
+</html>

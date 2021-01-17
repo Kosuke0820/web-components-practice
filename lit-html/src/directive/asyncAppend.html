@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    import { html, render } from 'lit-html'
+    import { asyncAppend } from 'lit-html/directives/async-append';
+
+    function sleep(n) {
+      return new Promise(resolve => setTimeout(resolve, n))
+    }
+
+    async function* wait(n) {
+      yield `${n}ms wait start!`;
+      await sleep(n)
+      yield `${n}ms wait end!`
+    }
+
+    const template = html`
+      <div>
+        ${asyncAppend(
+          wait(3000),
+          value => html`<div>${value}</div>`
+        )}
+      </div>
+    `
+
+    render(
+      template,
+      document.body
+    )
+  </script>
+</body>
+</html>

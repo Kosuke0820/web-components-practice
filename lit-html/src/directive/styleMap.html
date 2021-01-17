@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    import { html, render } from 'lit-html'
+    import { styleMap } from 'lit-html/directives/style-map';
+
+    const style = {
+      backgroundColor: '#f0f0f0',
+      'border-bottom': '1px solid #808080'
+    }
+
+    const template = html`
+      <div style=${styleMap(style)}>Is styled element</div>
+    `
+
+    render(
+      template,
+      document.body
+    )
+  </script>
+</body>
+</html>

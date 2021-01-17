@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="module">
+    import { html, render } from 'lit-html'
+    import { until } from 'lit-html/directives/until';
+
+    function sleep(n) {
+      return new Promise(resolve => setTimeout(resolve, n))
+    }
+
+    const template = html`
+      <div>
+        ${until(sleep(3000), html`<span>waiting...</span>`)}
+      </div>
+    `
+
+    render(
+      template,
+      document.body
+    )
+  </script>
+</body>
+</html>
