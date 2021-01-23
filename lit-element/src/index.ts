@@ -4,6 +4,8 @@ import "./properties/reflect.ts";
 import "./properties/converter.ts";
 import "./properties/hasChanged.ts";
 import "./styling.ts";
+import "./lifecycle/shouldUpdate.ts";
+import "./lifecycle/updateComplete.ts";
 
 class MyElement extends LitElement {
   render() {
@@ -14,6 +16,8 @@ class MyElement extends LitElement {
         <converter-element></converter-element>
         <has-changed></has-changed>
         <styling-element></styling-element>
+        <should-update-element></should-update-element>
+        <update-complete-element></-element>
       </div>
     `;
   }
