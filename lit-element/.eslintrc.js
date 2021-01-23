@@ -10,5 +10,7 @@ module.exports = {
     sourceType: "module",
   },
   plugins: ["@typescript-eslint"],
-  rules: {},
+  rules: {
+    "class-methods-use-this": 0,
+  },
 };
