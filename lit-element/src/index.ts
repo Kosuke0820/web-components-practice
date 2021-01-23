@@ -6,6 +6,7 @@ import "./properties/hasChanged.ts";
 import "./styling.ts";
 import "./lifecycle/shouldUpdate.ts";
 import "./lifecycle/updateComplete.ts";
+import "./customElementDecorator.ts";
 
 class MyElement extends LitElement {
   render() {
@@ -17,7 +18,8 @@ class MyElement extends LitElement {
         <has-changed></has-changed>
         <styling-element></styling-element>
         <should-update-element></should-update-element>
-        <update-complete-element></-element>
+        <update-complete-element></update-complete-element>
+        <custom-elemet-decorator></custom-elemet-decorator>
       </div>
     `;
   }
