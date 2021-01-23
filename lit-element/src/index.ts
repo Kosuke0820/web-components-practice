@@ -1,6 +1,6 @@
 import { LitElement, html } from "lit-element";
-import "./properties.ts";
-import "./reflect.ts";
+import "./properties/index.ts";
+import "./properties/reflect.ts";
 
 class MyElement extends LitElement {
   render() {
